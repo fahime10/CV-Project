@@ -5,3 +5,8 @@ h1 {
 .container {
   display: flex;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
