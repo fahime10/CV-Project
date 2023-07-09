@@ -1,0 +1,39 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid blue;
+  border-radius: 5px;
+}
+
+.edit-form button {
+  margin: 0 0 0.75rem 2rem;
+}
+
+.info {
+  margin: 0.75rem;
+}
+
+.edu, .work {
+  margin: 0.75rem;
+}
+
+.edu button, .work button {
+  margin-left: 2rem;
+}
+
+.cv {
+  border: 2px solid black;
+}
