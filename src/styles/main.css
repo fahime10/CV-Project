@@ -4,6 +4,7 @@ h1 {
 
 .container {
   display: flex;
+  justify-content: space-between;
 }
 
 fieldset {
@@ -16,6 +17,7 @@ fieldset {
   flex-direction: column;
   border: 3px solid blue;
   border-radius: 5px;
+  min-width: 450px;
 }
 
 .edit-form button {
@@ -36,4 +38,10 @@ fieldset {
 
 .cv {
   border: 2px solid black;
+  min-width: 500px;
+}
+
+.gen-info {
+  text-align: end;
+  margin: 0.5rem;
 }

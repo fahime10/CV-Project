@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 export class GeneralInfo extends Component {
     render() {
+        const { handleChangeInfo } = this.props;
+
         return (
             <>
             <fieldset className="info">
@@ -13,6 +15,7 @@ export class GeneralInfo extends Component {
                     maxLength={20}
                     placeholder="First name"
                     required={true}
+                    onChange={handleChangeInfo}
                 />
                 <br />
                 <label htmlFor="last-name">Last name: </label>
@@ -22,6 +25,7 @@ export class GeneralInfo extends Component {
                     maxLength={20}
                     placeholder="Last name"
                     required={true}
+                    onChange={handleChangeInfo}
                 />
                 <br />
                 <label htmlFor="email">Email: </label>
@@ -30,6 +34,7 @@ export class GeneralInfo extends Component {
                     id="email"
                     placeholder="Email"
                     required={true}
+                    onChange={handleChangeInfo}
                 />
                 <br />
                 <label htmlFor="phone-number">Phone number: </label>
@@ -38,6 +43,7 @@ export class GeneralInfo extends Component {
                     id="phone-number"
                     placeholder="Phone number"
                     required={true}
+                    onChange={handleChangeInfo}
                 />
             </fieldset>
             </>

@@ -49,7 +49,7 @@ function addStudy(e) {
 
     const labelForEndDate = document.createElement("label");
     labelForEndDate.setAttribute("id", "end-date");
-    labelForEndDate.textContent = "End date of study: ";
+    labelForEndDate.textContent = "End date of study: (leave blank if not finished)";
 
     const inputForEndDate = document.createElement("input");
     inputForEndDate.setAttribute("type", "date");
