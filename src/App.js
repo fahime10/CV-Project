@@ -19,7 +19,7 @@ class App extends Component {
       },
       eduExp: {
         school: {
-          id: 0,
+          id: 1,
           schoolName: "",
           titleStudy: "",
           endDateStudy: "",
@@ -40,7 +40,8 @@ class App extends Component {
 
     this.onInputInfo = this.handleChangeInfo.bind(this);
     this.onInputEdu = this.handleChangeEdu.bind(this);
-    this.onClickAddEdu = this.onClickAddEdu.bind(this);
+    this.onClickAddEd = this.onClickAddEdu.bind(this);
+    this.onClickRemoveEd = this.onClickRemoveEdu.bind(this);
 
   }
 
@@ -130,35 +131,47 @@ class App extends Component {
     e.preventDefault();
 
     const id = this.state.eduExp.school.id + 1;
-    // const schoolName = document.querySelector("#school-name").value;
-    // const titleStudy = document.querySelector("#title-study").value;
-    // const dateStudy = document.querySelector("#date-study").value;
 
     this.setState({
       eduExp: {
         school: {
           id: id,
-          schoolName: this.state.eduExp.school.schoolName,
-          titleStudy: this.state.eduExp.school.titleStudy,
-          endDateStudy: this.state.eduExp.school.endDateStudy,
+          schoolName: "",
+          titleStudy: "",
+          endDateStudy: "",
         },
         schools: this.state.eduExp.schools.concat(this.state.eduExp.school),
       },
     });
 
-    // this.setState({
-    //   eduExp: {
-    //     school: {
-    //       id: this.state.eduExp.school.id,
-    //       schoolName: this.state.eduExp.school.schoolName,
-    //       titleStudy: this.state.eduExp.school.titleStudy,
-    //       endDateStudy: this.state.eduExp.school.endDateStudy,
-    //     },
-    //     schools: this.state.eduExp.schools.concat(this.state.eduExp.school),
-    //   },
-    // });
-    console.log(this.state.eduExp);
-    // console.log(this.state.eduExp.school);
+    document.querySelector("#school-name").value = "";
+    document.querySelector("#title-study").value = "";
+    document.querySelector("#date-study").value = "";
+  }
+
+  onClickRemoveEdu(e) {
+    e.preventDefault();
+    const id = this.state.eduExp.school.id - 1;
+
+    if (id >= 1) {
+      this.setState({
+        eduExp: {
+          school: {
+            id: id,
+            schoolName: "",
+            titleStudy: "",
+            endDateStudy: "",
+          },
+          schools: this.state.eduExp.schools.pop(),
+        },
+      });
+  
+      document.querySelector("#school-name").value = "";
+      document.querySelector("#title-study").value = "";
+      document.querySelector("#date-study").value = "";
+    }
+
+    console.log(this.state.eduExp.schools);
   }
 
   render() {
@@ -169,7 +182,7 @@ class App extends Component {
         <div className="edit-form">
           <form>
           <GeneralInfo handleChangeInfo={this.onInputInfo} />
-          <EduExp handleChangeEdu={this.onInputEdu} onClickAddEdu={this.onClickAddEdu} />
+          <EduExp handleChangeEdu={this.onInputEdu} onClickAddEd={this.onClickAddEd} onClickRemoveEd={this.onClickRemoveEd} />
           <WorkExp />
           <button type="submit" className="submit-cv">Submit the information</button>
           </form>
@@ -177,7 +190,7 @@ class App extends Component {
         <div className="cv">
           <CVGenInfo firstName={this.state.genInfo.firstName} lastName={this.state.genInfo.lastName}
                       email={this.state.genInfo.email} phone={this.state.genInfo.phone} />
-          <CVEduExp eduExp={this.state.eduExp.schools} />
+          <CVEduExp schools={this.state.eduExp.schools} />
         </div>
       </div>
       </>
