@@ -1,10 +1,25 @@
+body {
+  background-color: rgb(148, 255, 255);
+}
+
 h1, h3 {
   text-align: center;
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+}
+
+.container .edit-cv {
+  display: none;
+  padding: 1rem;
+  width: 100px;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: rgb(51, 172, 51);
+  border-radius: 5px;
+  color: white;
 }
 
 fieldset {
@@ -18,10 +33,15 @@ fieldset {
   border: 3px solid blue;
   border-radius: 5px;
   min-width: 450px;
+  background-color: beige;
 }
 
 .edit-form button {
-  margin: 0 0 0.75rem 2rem;
+  margin: 0 0.75rem 0.75rem 2rem;
+  background-color: rgb(199, 149, 245);
+  color: white;
+  padding: 0.5rem;
+  max-width: 10rem;
 }
 
 .info {
@@ -37,8 +57,13 @@ fieldset {
 }
 
 .cv {
+  margin-left: 20%;
   border: 2px solid black;
-  min-width: 500px;
+  box-sizing: border-box;
+  width: 500px;
+  min-height: 100vh;
+  word-wrap: break-word;
+  background-color: white;
 }
 
 .gen-info {

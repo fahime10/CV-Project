@@ -17,6 +17,7 @@ class App extends Component {
         lastName: "",
         email: "",
         phone: "",
+        aboutMe: "",
       },
       eduExp: {
         school: {
@@ -57,6 +58,7 @@ class App extends Component {
           lastName: this.state.genInfo.lastName,
           email: this.state.genInfo.email,
           phone: this.state.genInfo.phone,
+          aboutMe: this.state.genInfo.aboutMe,
         },
       });
     } else if (e.target.id === "last-name") {
@@ -66,6 +68,7 @@ class App extends Component {
           lastName: e.target.value,
           email: this.state.genInfo.email,
           phone: this.state.genInfo.phone,
+          aboutMe: this.state.genInfo.aboutMe,
         },
       });
     } else if (e.target.id === "email") {
@@ -75,6 +78,17 @@ class App extends Component {
           lastName: this.state.genInfo.lastName,
           email: e.target.value,
           phone: this.state.genInfo.phone,
+          aboutMe: this.state.genInfo.aboutMe,
+        },
+      });
+    } else if (e.target.id === "phone-number") {
+      this.setState({
+        genInfo: {
+          firstName: this.state.genInfo.firstName,
+          lastName: this.state.genInfo.lastName,
+          email: this.state.genInfo.email,
+          phone: e.target.value,
+          aboutMe: this.state.genInfo.aboutMe,
         },
       });
     } else {
@@ -83,7 +97,8 @@ class App extends Component {
           firstName: this.state.genInfo.firstName,
           lastName: this.state.genInfo.lastName,
           email: this.state.genInfo.email,
-          phone: e.target.value,
+          phone: this.state.genInfo.phone,
+          aboutMe: e.target.value,
         },
       });
     }
@@ -308,25 +323,39 @@ class App extends Component {
   }
 }
 
+submitCV(e) {
+  e.preventDefault();
+
+  document.querySelector(".edit-form").style.display = "none";
+  document.querySelector(".container").style.flexDirection = "column";
+  document.querySelector(".edit-cv").style.display = "block";
+}
+
+editCV() {
+  document.querySelector(".edit-form").style.display = "flex";
+  document.querySelector(".container").style.flexDirection = "";
+  document.querySelector(".edit-cv").style.display = "none";
+}
+
   render() {
     return (
       <>
       <h1>CV Builder</h1>
       <div className="container">
         <div className="edit-form">
-          <form>
           <GeneralInfo handleChangeInfo={this.onInputInfo} />
           <EduExp handleChangeEdu={this.onInputEdu} onClickAddEd={this.onClickAddEd} onClickRemoveEd={this.onClickRemoveEd} />
           <WorkExp handleChangeWork={this.onInputWork} onClickAddWork={this.onClickAddWrk} onClickRemoveWork={this.onClickRemoveWrk} />
-          <button type="submit" className="submit-cv">Submit the information</button>
-          </form>
+          <button type="submit" className="submit-cv" onClick={this.submitCV}>Submit the information</button>
         </div>
         <div className="cv">
           <CVGenInfo firstName={this.state.genInfo.firstName} lastName={this.state.genInfo.lastName}
-                      email={this.state.genInfo.email} phone={this.state.genInfo.phone} />
+                      email={this.state.genInfo.email} phone={this.state.genInfo.phone}
+                      aboutMe={this.state.genInfo.aboutMe} />
           <CVEduExp schools={this.state.eduExp.schools} />
           <CVWorkExp jobs={this.state.workExp.jobs} />
         </div>
+        <button type="button" className="edit-cv" onClick={this.editCV}>Edit CV</button>
       </div>
       </>
     );

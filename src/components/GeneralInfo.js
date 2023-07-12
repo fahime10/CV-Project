@@ -43,6 +43,16 @@ export class GeneralInfo extends Component {
                     id="phone-number"
                     placeholder="Phone number"
                     required={true}
+                    maxLength={16}
+                    onChange={handleChangeInfo}
+                />
+                <br />
+                <label htmlFor="about-me">About me: </label>
+                <textarea 
+                    id="about-me" 
+                    rows={4} 
+                    placeholder="About me"
+                    required={true}
                     onChange={handleChangeInfo}
                 />
             </fieldset>
