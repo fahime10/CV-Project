@@ -152,6 +152,7 @@ class App extends Component {
   onClickRemoveEdu(e) {
     e.preventDefault();
     const id = this.state.eduExp.school.id - 1;
+    const length = this.state.eduExp.schools.length - 1;
 
     if (id >= 1) {
       this.setState({
@@ -162,7 +163,7 @@ class App extends Component {
             titleStudy: "",
             endDateStudy: "",
           },
-          schools: this.state.eduExp.schools.pop(),
+          schools: this.state.eduExp.schools.slice(0, length),
         },
       });
   
@@ -170,8 +171,6 @@ class App extends Component {
       document.querySelector("#title-study").value = "";
       document.querySelector("#date-study").value = "";
     }
-
-    console.log(this.state.eduExp.schools);
   }
 
   render() {
