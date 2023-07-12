@@ -1,10 +1,11 @@
 import '../src/styles/main.css';
 import { Component } from 'react';
-import { GeneralInfo } from "./components/GeneralInfo";
+import { GeneralInfo } from './components/GeneralInfo';
 import { EduExp } from './components/EduExp';
 import { WorkExp } from './components/WorkExp';
 import { CVGenInfo } from './components/CVGenInfo';
 import { CVEduExp } from './components/CVEduExp';
+import { CVWorkExp } from './components/CVWorkExp';
 
 class App extends Component {
   constructor(props) {
@@ -28,13 +29,14 @@ class App extends Component {
       },
       workExp: {
         work: {
+          id: 1,
           company: "",
           positionTitle: "",
           mainTasks: "",
           startDate: "",
           endDate: "",
         },
-        works: [],
+        jobs: [],
       },
     }
 
@@ -42,7 +44,9 @@ class App extends Component {
     this.onInputEdu = this.handleChangeEdu.bind(this);
     this.onClickAddEd = this.onClickAddEdu.bind(this);
     this.onClickRemoveEd = this.onClickRemoveEdu.bind(this);
-
+    this.onInputWork = this.handleChangeWork.bind(this);
+    this.onClickAddWrk = this.onClickAddWork.bind(this);
+    this.onClickRemoveWrk = this.onClickRemoveWork.bind(this);
   }
 
   handleChangeInfo(e) {
@@ -173,6 +177,137 @@ class App extends Component {
     }
   }
 
+  handleChangeWork(e) {
+    e.preventDefault();
+
+    if (e.target.id === "company") {
+      this.setState({
+        workExp: {
+          work: {
+            id: this.state.workExp.work.id,
+            company: e.target.value,
+            positionTitle: this.state.workExp.work.positionTitle,
+            mainTasks: this.state.workExp.work.mainTasks,
+            startDate: this.state.workExp.work.startDate,
+            endDate: this.state.workExp.work.endDate,
+          },
+          jobs: [],
+        },
+      });
+    } else if (e.target.id === "position") {
+      this.setState({
+        workExp: {
+          work: {
+            id: this.state.workExp.work.id,
+            company: this.state.workExp.work.company,
+            positionTitle: e.target.value,
+            mainTasks: this.state.workExp.work.mainTasks,
+            startDate: this.state.workExp.work.startDate,
+            endDate: this.state.workExp.work.endDate,
+          },
+          jobs: [],
+        },
+      });
+    } else if (e.target.id === "main-tasks") {
+      this.setState({
+        workExp: {
+          work: {
+            id: this.state.workExp.work.id,
+            company: this.state.workExp.work.company,
+            positionTitle: this.state.workExp.work.positionTitle,
+            mainTasks: e.target.value,
+            startDate: this.state.workExp.work.startDate,
+            endDate: this.state.workExp.work.endDate,
+          },
+          jobs: [],
+        },
+      });
+    } else if (e.target.id === "start-date") {
+      this.setState({
+        workExp: {
+          work: {
+            id: this.state.workExp.work.id,
+            company: this.state.workExp.work.company,
+            positionTitle: this.state.workExp.work.positionTitle,
+            mainTasks: this.state.workExp.work.mainTasks,
+            startDate: e.target.value,
+            endDate: this.state.workExp.work.endDate,
+          },
+          jobs: [],
+        },
+      });
+    } else {
+      this.setState({
+        workExp: {
+          work: {
+            id: this.state.workExp.work.id,
+            company: this.state.workExp.work.company,
+            positionTitle: this.state.workExp.work.positionTitle,
+            mainTasks: this.state.workExp.work.mainTasks,
+            startDate: this.state.workExp.work.startDate,
+            endDate: e.target.value,
+          },
+          jobs: [],
+        },
+      });
+    }
+  }
+
+  onClickAddWork(e) {
+    e.preventDefault();
+
+    const id = this.state.workExp.work.id + 1;
+
+    this.setState({
+      workExp: {
+        work: {
+          id: id,
+          company: "",
+          positionTitle: "",
+          mainTasks: "",
+          startDate: "",
+          endDate: "",
+        },
+        jobs: this.state.workExp.jobs.concat(this.state.workExp.work),
+      },
+    });
+
+    document.querySelector("#company").value = "";
+    document.querySelector("#position").value = "";
+    document.querySelector("#main-tasks").value = "";
+    document.querySelector("#start-date").value = "";
+    document.querySelector("#end-date").value = "";
+  }
+
+  onClickRemoveWork(e) {
+    e.preventDefault();
+  
+    const id = this.state.workExp.work.id - 1;
+    const length = this.state.workExp.jobs.length - 1;
+
+    if (id >= 1) {
+      this.setState({
+        workExp: {
+          work: {
+            id: id,
+            company: "",
+            positionTitle: "",
+            mainTasks: "",
+            startDate: "",
+            endDate: "",
+          },
+          jobs: this.state.workExp.jobs.slice(0, length),
+        },
+      });
+  
+    document.querySelector("#company").value = "";
+    document.querySelector("#position").value = "";
+    document.querySelector("#main-tasks").value = "";
+    document.querySelector("#start-date").value = "";
+    document.querySelector("#end-date").value = "";
+  }
+}
+
   render() {
     return (
       <>
@@ -182,7 +317,7 @@ class App extends Component {
           <form>
           <GeneralInfo handleChangeInfo={this.onInputInfo} />
           <EduExp handleChangeEdu={this.onInputEdu} onClickAddEd={this.onClickAddEd} onClickRemoveEd={this.onClickRemoveEd} />
-          <WorkExp />
+          <WorkExp handleChangeWork={this.onInputWork} onClickAddWork={this.onClickAddWrk} onClickRemoveWork={this.onClickRemoveWrk} />
           <button type="submit" className="submit-cv">Submit the information</button>
           </form>
         </div>
@@ -190,6 +325,7 @@ class App extends Component {
           <CVGenInfo firstName={this.state.genInfo.firstName} lastName={this.state.genInfo.lastName}
                       email={this.state.genInfo.email} phone={this.state.genInfo.phone} />
           <CVEduExp schools={this.state.eduExp.schools} />
+          <CVWorkExp jobs={this.state.workExp.jobs} />
         </div>
       </div>
       </>

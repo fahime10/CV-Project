@@ -28,7 +28,7 @@ fieldset {
   margin: 0.75rem;
 }
 
-.edu, .work {
+.edu, .work-exp {
   margin: 0.75rem;
 }
 
@@ -47,9 +47,13 @@ fieldset {
   border-bottom: 2px solid black;
 }
 
-.school {
+.school, .work {
   text-align: center;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   margin: 0 1rem;
+}
+
+textarea {
+  resize: none;
 }
