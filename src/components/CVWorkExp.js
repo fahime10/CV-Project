@@ -9,13 +9,19 @@ export class CVWorkExp extends Component {
                 <div className="cv-edu">
                     <h3>Work Experience</h3>
                     {jobs.map((work) => {
+                        let endDate;
+                        if (work.endDate === "") {
+                            endDate = "Present";
+                        } else {
+                            endDate = work.endDate;
+                        }
                         return (
                             <div key={work.id} className="work">
                                 <p>{work.company}</p>
                                 <p>{work.positionTitle}</p>
                                 <p>{work.mainTasks}</p>
-                                <p>{work.startDate}</p>
-                                <p>{work.endDate}</p>
+                                <p>Start Date: {work.startDate}</p>
+                                <p>Till {endDate}</p>
                             </div>
                         );
                     })}

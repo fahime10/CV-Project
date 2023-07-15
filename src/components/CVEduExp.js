@@ -9,11 +9,17 @@ export class CVEduExp extends Component {
                 <div className="cv-edu">
                     <h3>Educational Experience</h3>
                     {schools.map((school) => {
+                        let endDate;
+                        if (school.endDateStudy === "") {
+                            endDate = "Present";
+                        } else {
+                            endDate = school.endDateStudy;
+                        }
                         return (
                             <div key={school.id} className="school">
                                 <p>{school.schoolName}</p>
                                 <p>{school.titleStudy}</p>
-                                <p>{school.endDateStudy}</p>
+                                <p>{endDate}</p>
                             </div>
                         );
                     })}

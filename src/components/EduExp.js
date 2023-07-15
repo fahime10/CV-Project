@@ -23,7 +23,7 @@ export class EduExp extends Component {
                     onChange={handleChangeEdu}
                 />
                 <br />
-                <label htmlFor="date-study">End Date of study: </label>
+                <label htmlFor="date-study">End Date of study: (leave blank if not finished)</label>
                 <input
                     type="date"
                     id="date-study"
