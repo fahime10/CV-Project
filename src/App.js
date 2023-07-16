@@ -206,7 +206,7 @@ class App extends Component {
             startDate: this.state.workExp.work.startDate,
             endDate: this.state.workExp.work.endDate,
           },
-          jobs: [],
+          jobs: this.state.workExp.jobs,
         },
       });
     } else if (e.target.id === "position") {
@@ -220,7 +220,7 @@ class App extends Component {
             startDate: this.state.workExp.work.startDate,
             endDate: this.state.workExp.work.endDate,
           },
-          jobs: [],
+          jobs: this.state.workExp.jobs,
         },
       });
     } else if (e.target.id === "main-tasks") {
@@ -234,7 +234,7 @@ class App extends Component {
             startDate: this.state.workExp.work.startDate,
             endDate: this.state.workExp.work.endDate,
           },
-          jobs: [],
+          jobs: this.state.workExp.jobs,
         },
       });
     } else if (e.target.id === "start-date") {
@@ -248,7 +248,7 @@ class App extends Component {
             startDate: e.target.value,
             endDate: this.state.workExp.work.endDate,
           },
-          jobs: [],
+          jobs: this.state.workExp.jobs,
         },
       });
     } else {
@@ -262,7 +262,7 @@ class App extends Component {
             startDate: this.state.workExp.work.startDate,
             endDate: e.target.value,
           },
-          jobs: [],
+          jobs: this.state.workExp.jobs,
         },
       });
     }
